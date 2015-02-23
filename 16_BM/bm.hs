@@ -1,5 +1,6 @@
+import Allcp
 
-matches :: Eq a => [a] -> [a] -> Int
+matches :: Eq a => [a] -> [a] -> [Int]
 --matches ws = map length . filter (endswith ws) . inits
 --matches "abcab" "ababcabcab" = [7, 10]
 
@@ -20,9 +21,11 @@ matches :: Eq a => [a] -> [a] -> Int
 --  = map fst . filter (p . snd) . map (fork (f, g))
 --matches ws = map fst . filter (p . snd) . scanl step (0, e)
 
-matches ws                = test m . scanl step (0, [ ])
+step (n, sx) x        = (n + 1, x: sx)
+
+matches ws                = test m . scanl step (0, [])
   where
-    test j [ ]            = [ ]
+    test j []             = []
     test j ((n, sx): nxs) | i == m     = n: test k (drop (k - 1) nxs)
                           | m - k <= i = test k (drop (k - 1) nxs)
                           | otherwise  = test m (drop (k - 1) nxs)
@@ -31,12 +34,4 @@ matches ws                = test m . scanl step (0, [ ])
                               i  = if i' == j then m else i'
                               k  = shift sw i
     (sw, m)               = (reverse ws, length ws)
-    shift sw i
-        = head [k | k <- [1..m], llcp sw (drop k sw) == min i (m - k)]
-
-step (n, sx) x = (n + 1, x: sx)
-
-llcp xs  [ ]        = 0
-llcp [ ] ys         = 0
-llcp (x: xs) (y:ys) = if x == y then 1 + llcp xs ys else 0
-
+    shift sw i            = head [k | k <- [1..m], llcp sw (drop k sw) == min i (m - k)]
