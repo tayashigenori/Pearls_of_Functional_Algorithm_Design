@@ -15,6 +15,7 @@ matches :: Eq a => [a] -> [a] -> [Int]
 --fork (foldl op1 e1, foldl op2 e2) = foldl op (e1, e2)
 --fork (length, endswith ws) = foldl step (0, e)
 --step (n, x) y              = (n + 1, op x y)
+
 --matches ws = map fst . filter snd . scanl step (0, e)
 --endswith ws = p . foldl op e
 --map f . filter (p . g)
@@ -35,3 +36,27 @@ matches ws                = test m . scanl step (0, [])
                               k  = shift sw i
     (sw, m)               = (reverse ws, length ws)
     shift sw i            = head [k | k <- [1..m], llcp sw (drop k sw) == min i (m - k)]
+
+-- 動作確認
+-- "window"
+-- (scanl step (0, [])) "ababcabcab"
+-- [(0,""),(1,"a"),(2,"ba"),(3,"aba"),(4,"baba"),(5,"cbaba"),(6,"acbaba"),(7,"bacbaba"),(8,"cbacbaba"),(9,"acbacbaba"),(10,"bacbacbaba")]
+
+-- test shift
+shift' sw i = [k | k <- [1..m], llcp sw (drop k sw) == min i (m - k)]
+    where
+        m = length sw
+-- let ws = "abcab"; sw = reverse ws; m = (length sw) in [shift' sw i | i <- [0..m]]
+-- [[1,2,4,5],[5],[3,5],[3,5],[3,5],[3,5]]
+
+-- 途中経過
+-- m = 5
+-- sw = "bacba"
+--
+-- n=0   i' = 0, i = 0, k = 1, j = 5, sx = ""
+-- n=1   i' = 0, i = 0, k = 1, j = 5, sx = "a"
+-- n=2   i' = 2, i = 2, k = 3, j = 5, sx = "ba"
+-- n=5   i' = 0, i = 0, k = 1, j = 3, sx = "cbaba"
+-- n=6   i' = 0, i = 0, k = 1, j = 5, sx = "acbaba"
+-- n=7   i' = 5, i = 5, k = 3, j = 5, sx = "bacbaba"
+-- n=10  i' = 3, i = 5, k = 3, j = 3, sx = "bacbacbaba"
