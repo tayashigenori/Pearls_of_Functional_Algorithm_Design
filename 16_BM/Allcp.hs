@@ -1,7 +1,5 @@
 module Allcp where
 
---tmp
-
 allcp xs = [llcp xs (drop k xs) | k <- [0 .. length xs - 1]]
 allcp' xs = tail (allcp xs) ++ [0]
 
