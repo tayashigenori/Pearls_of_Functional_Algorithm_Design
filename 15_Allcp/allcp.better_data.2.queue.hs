@@ -24,7 +24,7 @@ allcp xs = extract (until done step (as, empty, 0, 1))
                |  xa ! j == xa ! k  =  1 + llcp' (j + 1) (k + 1)
                |  otherwise         =  0
 
--- Queue �^�ɑ΂��ĉ\�ȉ��Z
+-- Queue 型に対して可能な演算
 -- insert
 -- remove
 -- empty
