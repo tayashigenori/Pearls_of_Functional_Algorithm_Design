@@ -23,3 +23,10 @@ allcp xs = extract (until done step (as, empty, 0, 1))
     llcp' j k  |  j == n || k == n  =  0
                |  xa ! j == xa ! k  =  1 + llcp' (j + 1) (k + 1)
                |  otherwise         =  0
+
+-- Queue Œ^‚É‘Î‚µ‚Ä‰Â”\‚È‰‰ŽZ
+-- insert
+-- remove
+-- empty
+-- elems
+
