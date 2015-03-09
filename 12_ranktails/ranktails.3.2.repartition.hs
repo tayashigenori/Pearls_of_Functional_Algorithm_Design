@@ -43,12 +43,12 @@ label iss    = zipWith tag iss (scanl (+) 0 (map length iss))
 tag is j     = [(i, j) | i <- is]
 --repartitions      = map repartition (iterate (*2) 1)
 repartitions n      = map (repartition n) (iterate (*2) 1)
-repartition n k iss = concatMap (psort . map install) iss
 --repartition k iss = partition (zip rs (shiftBy k rs))
 --                    where rs = resort (concat (label iss))
 -- improvement 1
 --repartition k iss = concatMap (psort . map (install rs)) iss
 --                    where rs = shiftBy k (resort (concat (label iss)))
+repartition n k iss = concatMap (psort . map install) iss
   where install i = (i, if j < n then k + a Arr.! j else n - i - 1)
                     where j = i + k
         a         = Arr.array (0, n - 1) (concat (label iss))
