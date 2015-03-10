@@ -18,7 +18,7 @@ extract :: [[(a, Bool)]] -> [[a]]
 extract = map (map fst . filter snd)
 
 -- nonseg
-data State = E | S | M | N
+data State = E | S | M | N deriving Eq
 
 --does not work
 nonseg = (== N) . foldl step E . map snd

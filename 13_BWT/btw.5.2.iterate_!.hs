@@ -1,4 +1,3 @@
-{-# LANGUAGE NPlusKPatterns #-}
 import Data.List
 import qualified Data.Array as Arr
 
@@ -29,7 +28,7 @@ untransform (ys, k) = take n (tail (map (ya Arr.!) (iterate (pa Arr.!) k)))
 
 --recreate :: Ord a => [a] -> [[a]]
 --recreate . map last . sort . rots = sort . rots
-recreate 0       = map (const [])
+--recreate 0       = map (const [])
 --recreate (j + 1) = hdsort . consCol . fork (id, recreate j)
 --recreate (j + 1) = consCol . fork (apply p, apply p . recreate j)
 --recreate j = tp . take j . tail . iterate (apply p)
@@ -39,10 +38,10 @@ recreate 0       = map (const [])
 --tp . take (j + 1) = consCol . fork (head, tp . take j . tail)
 --apply p . tp      = tp . map (apply p)
 
-fork (f, g) x = (f x, g x)
+--fork (f, g) x = (f x, g x)
 
-rrot    :: [a] -> [a]
-rrot xs = [last xs] ++ init xs
+--rrot    :: [a] -> [a]
+--rrot xs = [last xs] ++ init xs
 
 --hdsort :: Ord a => [[a]] -> [[a]]
 --hdsort = sortBy cmp where cmp (x: xs) (y: ys) = compare x y
@@ -51,8 +50,8 @@ rrot xs = [last xs] ++ init xs
 --p = map snd (sort (zip ys [0 .. n - 1]))
 --apply p xs = [xs Arr.!! i | i <- p]
 
-consCol           :: Ord a => ([a], [[a]]) -> [[a]]
-consCol (xs, xss) = zipWith (:) xs xss
+--consCol           :: Ord a => ([a], [[a]]) -> [[a]]
+--consCol (xs, xss) = zipWith (:) xs xss
 
 -- *Main> transform "this, that or the other"
 -- ("te,rshhhtttth  oeia  or",22)
