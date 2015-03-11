@@ -1,4 +1,5 @@
-import qualified Data.List as Li
+{-# LANGUAGE NoMonomorphismRestriction #-}
+--import qualified Data.List as Li
 
 --maxtail :: Ord a => [a] -> [a]
 --maxtail = maximum . Li.tails
@@ -27,7 +28,7 @@ import qualified Data.List as Li
 
 --maxtail = uncurry (++) . cocktail
 maxtail = thd . cocktail
-thd xs = xs!! 2
+thd (a, b, c, d) = c
 --cocktail xs = if null xs then ([], [])
 --              else (border (maxtail xs), maxtail xs after border (maxtail xs))
 --cocktail = foldl op ([], [])

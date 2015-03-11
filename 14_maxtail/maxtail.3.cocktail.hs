@@ -1,4 +1,5 @@
-import qualified Data.List as Li
+{-# LANGUAGE NoMonomorphismRestriction #-}
+--import qualified Data.List as Li
 
 --maxtail :: Ord a => [a] -> [a]
 --maxtail = maximum . Li.tails
