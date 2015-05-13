@@ -38,3 +38,18 @@ consCol (xs, xss) = zipWith (:) xs xss
 -- *Main> untransform ("te,rshhhtttth  oeia  or",22)
 -- "this, that or the other"
 
+-- *Main> recreate 0 "eabcd"
+-- ["","","","",""]
+-- *Main> recreate 1 "eabcd"
+-- ["a","b","c","d","e"]
+-- *Main> consCol ("eabcd", ["a","b","c","d","e"])
+-- ["ea","ab","bc","cd","de"]
+-- *Main> recreate 2 "eabcd"
+-- ["ab","bc","cd","de","ea"]
+-- *Main> consCol ("eabcd", ["ab","bc","cd","de","ea"])
+-- ["eab","abc","bcd","cde","dea"]
+-- *Main> recreate 3 "eabcd"
+-- ["abc","bcd","cde","dea","eab"]
+-- *Main> recreate 5 "eabcd"
+-- ["abcde","bcdea","cdeab","deabc","eabcd"]
+
