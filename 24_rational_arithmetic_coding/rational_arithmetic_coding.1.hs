@@ -4,6 +4,8 @@ import Data.Ratio
 
 type Fraction = Ratio Integer
 type Interval = (Fraction, Fraction)
+type Symbol   = String
+type Model    = Symbol -> Interval
 
 -- narrowing
 (|>)                 :: Interval -> Interval -> Interval
